@@ -1,0 +1,1224 @@
+Slip 1:-
+Write a program to create a MAP with empname and deptname. Print details of
+all employees working in the same department, as “Mr. Joshi”.
+(create MAP : 10M logic: 10M print :5M)
+class Employee(var ename:String,var dept:String)
+{
+def display()
+{
+println("
+"); println("Name:"+ename); println("Department Name:"+dept)
+}
+}
+object Slip1
+{
+def main(args:Array[String])
+{
+val e1=new Employee("Vishnu","finance");
+val e2=new Employee("Sumit","finance");
+val e3= new Employee("Paresh","Marketing");
+val e4 =new Employee("Tushar","Marketing");
+var e5=new Employee("Akshay","Marketing");
+var m1:Map[Int,Employee]=Map(1->e1,2->e2,3->e3,4->e4,5->e5); for((k,v)<-m1)
+{
+if(v.dept.equalsIgnoreCase("marketing")) v.display()
+}
+}
+}
+
+___________________________________________#####______________________________________________________
+
+1. Model the following Department system as a document database.
+Consider a set of students, course and marks. A student can register for more than
+one course.
+2. Assume appropriate attributes and collections as per the query requirements.
+[5]
+3. Insert at least 10 documents in each collection. [10]
+4. Answer the following Queries a. Count the number of students having more
+than 80 percentage [21/2]
+b. List the name and age of the oldest 5 students with marks less than 40
+c. Use a cursor to display names of students whose percentage is greater than 70.
+[5]
+d. Find all female students which either live in Pune and Mumbai [21/2]
+2) And 3)=>
+>db.student1.insert({name:"Abhi",course:[{coursename:"bcs"},{coursename:"bvoc"}],mar
+ks:80,age: 21,gender:"male",city:"pune"})
+>db.student1.insert({name:"mukesh",course:[{coursename:"bcs"},{coursename:"bvoc"}],
+marks:60,a ge:22,gender:"male",city:"pune"})
+>db.student1.insert({name:"manisha",course:[{coursename:"mcs"},{coursename:"bvoc"}]
+,marks:90, age:22,gender:"female",city:"mumbai"})
+>db.student1.insert({name:"manasi",course:[{coursename:"mcs"},{coursename:"bvoc"}],
+marks:92,a ge:22,gender:"female",city:"latur"})
+>db.student1.insert({name:"apurva",course:[{coursename:"mcs"},{coursename:"bvoc"}],
+marks:37,a ge:22,gender:"female",city:"sasvad"})>db.student1.insert({name:"arati",course:[{coursename:"mcs"},{coursename:"bvoc"}],ma
+rks:32,age: 22,gender:"female",city:"bekarai"})
+4)
+> db.student1.count({marks:{$gt:80}})
+> db.student1.find({marks:{$lt:40}})
+> var my=db.student.find({marks:{$gt:70}});
+while(my.hasNext()){print(tojson(my.next()));}
+>db.student1.find({gender:"female",$or:[{city:"pune"},{city:"mumbai"},{marks:{$lt:50}}]}
+)
+
+___________________________________________#####______________________________________________________
+
+
+Slip 2.
+A. Write a program to read five random numbers and convert it to binary
+and octal using user defined functions.
+(random number : 5M binary : 5M Octal : 5M)
+B. Write a program to calculate average of all prime numbers between n1
+and n2 (take n1 and n2 from user).
+(accept n1, n2 : 5M prime numbers : 5M average :5M)
+object Slip2_1
+{
+def binary(num:Int)
+{
+var bstr=" ";//binary String var rem=0;
+println(num); var n1=num; while(n1>0)
+{
+rem=n1%2; n1=n1/2;
+bstr= rem+bstr;
+}
+println("Binary:"+bstr);
+}
+def octal(num:Int)
+{
+var ostr=" ";//binary String var rem=0;println(); println(num); var n1=num; while(n1>0)
+{
+rem=n1%8; n1=n1/8;
+ostr= rem+ostr;
+}
+println("octal:"+ostr);
+}
+def main(args:Array[String])
+{
+val r=new scala.util.Random; binary(r.nextInt(15)) octal(r.nextInt(15))
+}
+
+___________________________________________#####______________________________________________________
+
+
+1. Model the following sales system as a document database.
+Consider a set of products, customers, orders and invoices. An invoice is generated when an order is
+processed.
+2. Assume appropriate attributes and collections as per the query requirements. [5]
+3. Insert at least 10 documents in each collection. [10]
+4. Answer the following Queries. a. List all products in the inventory. [21/2]
+b. List the details of orders with a value >10000. [21/2]
+c. List all the orders which has not been processed (invoice not generated). [5]
+d. List all the orders along with their invoice for “Mr. Arun Kumar”.[5]
+2)
+db.product.insert({name:"robot",price:12000})
+db.product.insert({name:"toycar",price:2000})
+db.product.insert({name:"cricketset",price:9000})
+db.product.insert({name:"studymaterial",price:19000})
+3)
+>db.order.insert({orderno:3736,custName:"arunkumar",product:{productName:"toycar",price:2000
+0},order_date:"12/2/2019",stetus:"processed",Totalbill:2039,invoice:{invoiceNO:67564,bill:2039,dat
+e:"17/2/2019"}})
+>db.order.insert({orderno:3737,custName:"arunkumar",product:{productName:"robot",price:12000},order_date:"11/3/2019",stetus:"processed",Totalbill:12800,invoice:{invoiceNO:67574,bill:12039,da
+te:"17/3/2019"}})
+>db.order.insert({orderno:3738,custName:"arunkumar",product:{productName:"cricketset",price:90
+00},order
+_date:"15/5/2019",stetus:"in process",Totalbill:9050})
+>db.order.insert({orderno:3739,custName:"mukeshpatil",product:{productName:"studentmaterial",
+price:19000},order_date:"15/8/2019",stetus:"in process",Totalbill:19080})
+4)
+> db.product.find().pretty()
+> db.order.find({Totalbill:{$lt:10000}})
+> db.order.find({stetus:"in process"})
+>db.order.find({custName:"arunkumar",stetus:"processed"}
+
+
+___________________________________________#####______________________________________________________
+
+Slip 3 :-
+Create an abstract class Order (id, description). Derive two classes Purchase Order and
+Sales Order with details of Supplier and Customer respectively. Create object of each
+Purchase Order And Sales Order. Display the details of the supplier and customer.
+(abstract class : 5M derivation : 20 M display : 10M)
+abstract class Order(id:Int, description:String){
+def display();
+}
+class PurchaseOrder(id:Int, description:String) extends Order (id, description){
+var vendor:String = null;
+def display(){
+println("Enter Vender name: ");
+vendor= scala.io.StdIn.readLine();
+println(“ Vender name is : " + vendor);
+println(“ Order Id is : “+ id);
+println(“ OrderVender description is : " +description);
+}}
+class SalesOrder(id:Int, description:String) extends Order (id, description){
+customer:String = null;
+def display(){
+println("Enter customer name: ");
+customer= scala.io.StdIn.readLine();
+println(“ Customer name is : " + customer);
+println(“ Order Id is : “+ id);
+println(“ Order description is : " +description);
+}}
+object runclass3 {
+def main(args: Array[String]){var p = new PurchaseOrder(203 , “computer”) ;
+var c = new SalesOrder(305, “Laptop”) ;
+p.display();
+c.display();
+}}
+abstract class Order(id:Int, description:String){
+def display();
+}
+class PurchaseOrder(id:Int, description:String) extends Order (id, description){
+var vendor:String = null;
+def display(){
+println("Enter Vender name: ");
+vendor= scala.io.StdIn.readLine();
+println(“ Vender name is : " + vendor);
+println(“ Order Id is : “+ id);
+println(“ OrderVender description is : " +description);
+}}
+class SalesOrder(id:Int, description:String) extends Order (id, description){
+customer:String = null;
+def display(){
+println("Enter customer name: ");
+customer= scala.io.StdIn.readLine();
+println(“ Customer name is : " + customer);
+println(“ Order Id is : “+ id);
+println(“ Order description is : " +description);
+}}
+object runclass3 {
+def main(args: Array[String]){var p = new PurchaseOrder(203 , “computer”) ;
+var c = new SalesOrder(305, “Laptop”) ;
+p.display();
+c.display();
+}}
+
+
+___________________________________________#####______________________________________________________
+
+
+1. Model the following books system as a document database.
+Consider a set of books and publishers A publisher can publish more than one book.
+2. Assume appropriate attributes and collections as per the query requirements. [5]
+3. Insert at least 10 documents in each collection. [10]
+4. Answer the following Queries. a. List all Publishers which are located in Mumbai [21/2]
+b. List the details of books with a cost >1000. [21/2]
+c. List all the book which are written by “RaghuRamkrishnan” and published in 2017 [5]
+List all the books published by “O Reilly” and are written either in English or Marathi
+
+2)
+db.book.insert({BName:"shyamchiaai",cost:700,author:"sane guruji",published:2007})
+db.book.insert({BName:"Two
+Saints",cost:1700,author:"raguramkrishna",published:2017})
+db.book.insert({BName:"ramkrushna
+paramhans",cost:800,author:"raguramkrishna",published: 2017})
+>db.book.insert({BName:"DMS",cost:300,author:"raguramkrishna",published:2005})3)
+db.publisher.insert({pname:"OReilly",language:"English",books:[{BName:"ramkrushna
+paramhans"},{BName:"Two Saints"}],city:"mumbai"})
+>db.publisher.insert({pname:"vision",language:"English",books:[{BName:"DMS"}],city:"pu
+ne"})
+db.publisher.insert({pname:"OReilly",language:"marathi",books:[{BName:"shyamchi
+aai"}],city:"mumbai"})
+4)
+> db.publisher.find({city:"mumbai"})
+> db.book.find({cost:{$lt:1000}})
+> db.book.find({author:"raguramkrishna",published:2017})
+> > db.publisher.find({pname:"OReilly",$or:[{language:"English"},{language:"marathi"}]})
+
+___________________________________________#####______________________________________________________
+
+
+Slip 4:-
+Write a program to calculate transpose of a matrix and check if the resultant matrix is
+lower triangular or not.
+/* C program to check if the given matrix is Lower triangular or not */
+//Without using pointers. Program is solved using pointers, below this solution
+#include<stdio.h>
+#define N 3
+int check_lower_triangular_matrix(int mat[N][N])
+{
+int i, j;
+for (i = 0; i < N; i++)
+for (j = i + 1; j < N; j++)
+if (mat[i][j] != 0)
+return 0;
+return 1;
+}
+-------------------------------------------------------------------------------------------------------------------------
+----------PUT
+Enter the order of the matrix : 3
+Input the matrix elements :
+1 0 0
+1 2 0
+2 5 0
+
+___________________________________________#####______________________________________________________
+
+
+1. Model the following Hospital information system as a document database.
+Consider hospitals in and around Pune. Each hospital may have one or more
+specializations like Pediatric, Gynaec, Orthopaedic, etc. A person can
+recommend/provide review for a hospital. A doctor can be associated with one or more
+hospitals.
+2. Assume appropriate attributes and collections as per the query requirements. [5]
+3. Insert at least 10 documents in each collection. [10]
+4. Answer the following Queries a. List the names of hospitals with pediatric
+specialization. [21/2]
+b. List the Names of doctors who are visiting “Jehangir Hospital ” on Mondays. [21/2]
+c. List the names of hospitals which are multispecialty hospitals where Dr. Kale visits. [5]
+d. List the names of people who have given a rating of (>=3) for “Jehangir Hospital”
+2)
+>db.Hospital.insert({Hno:1,Hname:"AAA",Specialization:["Pediatric","Gynaec","Orthopaed
+ic"],Peopl e:[{Pname:"PQR",Rating:4},{Pname:"SDE",Rating:5}],Doctor:[{"Dname" :
+"WWW",
+"Visit" : "Sunday"}]})
+>db.Hospital.insert({Hno:2,Hname:"BBB",Specialization:["Gynaec","Orthopaedic"],People
+:[{Pname:"
+POP",Rating:2},{Pname:"SDE",Rating:3}],Doctor:[{"Dname":"XXX",Visit:"Monday"}]})
+>db.Hospital.insert({Hno:3,Hname:"CCC",Specialization:["Gynaec","Orthopaedic","Pediatr
+ic"],People
+:[{Pname:"KLO",Rating:3},{Pname:"LPO",Rating:3}],Doctor:[{"Dname" :
+"XXX","Visit":"Tuesday"}]})
+4)a) > db.Hospital.find({Specialization:"Pediatric"})
+b)>db.Hospital.find({Hname:"CCC","Doctor.Visit":"Tuesday"})
+c)>db.Hospital.find({Specialization:{$not:{$size:1}},"Doctor.Dname":"XXX"})
+d) > db.Hospital.find({"People.Rating":{ $gt: 3 },Hname:"AAA"})
+
+___________________________________________#####______________________________________________________
+
+
+Slip 5:-
+Write a program to create two sets of strings and find common strings between them.
+Merge sets after removing common strings. Display resultant set.
+(create sets:10M find common elements:5M merge removing common :10M display:5M)
+{
+def main(args:Array[String])
+{
+var str1:Set[String]=Set("Hello","good","Morning"); var
+str2:Set[String]=Set("Hello","good","night"); var str3=str1.diff(str2);
+println(str1); println(str2); println(str3);
+var str4=str2.diff(str1); println(str4); str3++=str4; println(str3)
+}
+}
+
+___________________________________________#####______________________________________________________
+
+1. Model the following blog database with the following requirements: Every post has the
+unique title, description and url, Every post can have one or more tags, Every post has the
+name of its publisher and total number of likes, Every post has comments given by users
+along with their name, message, data-time and likes. On each post, there can be zero or
+more comments.
+2. Assume appropriate attributes and collections as per the query requirements. [5]
+3. Insert at least 10 documents in each collection. [10]
+4. Answer the following Queries a. List all the blogs which are tagged as food blogs [21/2]
+b. List all the blogs that are posted by “Amit” [21/2]
+c. List all the blogs that are tagged a “travel blogs” and were created before 2018 and are
+have comments written by “Sagar” and commented as “like” [5]
+d. List all the blogs that have comments which are posted before August 2019 or are not
+liked by the user posting the comment [5]
+2) & 3)
+>db.post.insert({title:"online",url:"www.abc.com",tag:["food","travel"],pname:"mukesh",p
+date:new Date("2019-03-12"),like:89,user:[{name:"abhi",comment:"good",message:"do
+best", cdate:new Date("2020-03-12"),like:1}]})
+>db.post.insert({title:"wetpet",url:"www.wetpet.com",tag:["food","travel",],pname:"Amit",
+pdate:ne w Date("2018-03-12"),like:82,user:[{name:"abhi",comment:"good",message:"do
+best",time:"4pm",like:1},{name:"mukesh",comment:"best",message:"success", cdate:new
+Date("2008-11-12"),like:2}]})
+>db.post.insert({title:"wetpet",url:"www.wetpet.com",tag:["food","travel","magic"],pname
+:"abhijee
+t",pdate:newDate("2017-03-12"),like:182,user:[{name:"sagar",comment:"like",message:"
+dobest",time:"4pm",like:1},{name:"mukesh",comment:"best",message:"success",
+cdate:new Date("2019-03-12"),like:2}]})
+>db.post.insert({title:"nonveg",url:"www.non.com",tag:["food","travel","chiken"],pname:"
+Amit",pda te:new Date("2019-07-12"),like:82,user:[{name:"manisha",comment:"good",message:"dobest",time:"4pm",like:0
+},{name:" manasi",comment:"best",message:"success", cdate:new
+Date("2018-03-12"),like:0}]})
+4)
+>db.post.find({tag:"food"})
+>db.post.find({pname:"Amit"})
+> db.post.find({tag:"travel",pdate:{"$lte":new Date("2018-03-
+11")},"user.name":"sagar","user.comment":"like"})
+d) > db.post.find({$or:[{"user.cdate":{$lte:new Date("2019-08-07")}},{"user.like":0}]})
+
+___________________________________________#####______________________________________________________
+
+
+Slip 6:-
+Write a program to read a character and a string from user and remove first and last
+occurrence of the character from the string. Display resultant string after reversing its
+case.
+(read : 10 M remove occurance:10M reverse : 5M display :5M)
+{
+def reverseString(ch:Char):Char=
+{
+if(ch.isLower) ch.toUpper; else ch.toLower;
+}
+def main(args:Array[String])
+{
+var ch=' '; var str=" ";
+println("Enter String:"); str=scala.io.StdIn.readLine(); var str1=new StringBuilder(str);
+println("Enter character:"); ch=scala.io.StdIn.readChar();
+str1.deleteCharAt(str1.indexOf(ch.toString()));
+var str3=str1.deleteCharAt(str1.lastIndexOf(ch.toString())).toString; var
+str4=str3.map(reverseString)
+println(str4);
+}
+}
+
+___________________________________________#####______________________________________________________
+
+
+1. Model the following Tours information as a document database.A tour will consider the source and destination. Destination may be all around the world.
+The tours are planned using different tourism industries. The industries provide the
+complete information before selecting a particular package. Customers select different
+packages according to their requirements and can rate/review the tourism industry.
+2. Assume appropriate attributes and collections as per the query requirements. [5]
+3. Insert at least 10 documents in each collection. [10]
+4. Answer the following Queries. a. List the details of packages provided by “Veena World”
+[21/2]
+b. List the highest rated tourism industry. [21/2]
+c. List all the details of expenses made by John on his first 3 trips. Also display the total
+expenses. [5]
+d. List the names of the customers who went on a tour to Shillong. [5]
+2)
+db.turisum.insert({name:"veenaword",rate:9,package:[{pname:"shillong",cost:10000},{p
+nam e:"gujart",cost:7000},{pname:"karnataka",cost:6000}]})
+>db.turisum.insert({name:"rohit",rate:7,package:[{pname:"shillong",cost:10000},{pname
+:"rujan",cos t:7000}]})
+3)
+>db.tour.insert({sourc:"john",destination:"shillong",toerisumName:"veenaword",tourisu
+mrate:8000,
+expense:20000,year:2018,customer:[{cname:"mukesh",city:"pune"},{cname:"abhijeet
+sangita",city:"baramati"},{cname:"manisha",city:"15no"},{cname:"manasi",city:"latur"}]})
+>db.tour.insert({sourc:"john",destination:"karnataka",toerisumName:"veena
+word",tourisumrate:80090,expense:20900,year:2017,customer:[{cname:"mukesh",city:"
+pune"},{cna
+me:"abhijeetsangita",city:"baramati"},{cname:"manisha",city:"15no"},{cname:"manasi",ci
+ty:"latur"}]
+})>db.tour.insert({sourc:"john",destination:"rajasthan",toerisumName:"rohit",tourisumrat
+e:6000,expe
+nse:30400,year:2019,customer:[{cname:"mukesh",city:"pune"},{cname:"abhijeet
+sangita",city:"baramati"},{cname:"manisha",city:"15no"},{cname:"manasi",city:"latur"}]})
+>db.tour.insert({sourc:"john",destination:"taj",toerisumName:"rohit",tourisumrate:6009
+0,expense:1
+0400,year:2016,customer:[{cname:"mukesh",city:"pune"},{cname:"abhijeetsangita",city:"
+baramati"}
+,{cname:"manisha",city:"15no"},{cname:"manasi",city:"latur"}]})
+4)
+>db.turisum.find({name:"veena word"}).pretty()
+>db.turisum.find({}).sort({"rate":-1}).limit(1)
+>db.tour.aggregate([{"$sort":{"year":1}},{"$limit":3},{$group:{_id:null,"count":{"$sum":"$e
+xpense"
+}}}])
+> db.tour.find({destination:"shillong"})
+
+___________________________________________#####______________________________________________________
+
+
+Slip 7:-
+Write a program for multiplication of two matrices. Also check if the resultant matrix is
+upper triangular or not.
+(Validate number of rows and columns before multiplication and give appropriate
+message).
+{
+def main(args:Array[String])
+{
+val arr1=Array.ofDim[Int](2,2);//1st array val arr2=Array.ofDim[Int](2,2);//2nd array
+var rarry=Array.ofDim[Int](2,2)//resultant Array println("Enter Matrix1");
+for(i<-0 to 1)
+{
+for(j<-0 to 1)
+{
+arr1(i)(j)=scala.io.StdIn.readInt();//read Array1 element
+}
+}
+println("Enter Matrix2"); for(i<-0 to 1)
+{
+for(j<-0 to 1)
+{
+arr2(i)(j)=scala.io.StdIn.readInt();//read Array2 element
+}
+}
+println("MATRIX -1");
+for(i<-0 to 1)
+{for(j<-0 to 1)
+{
+print(arr1(i)(j)+" ");//print Array Element
+}
+println();
+}
+println("MATRIX -2");
+for(i<-0 to 1)
+{
+for(j<-0 to 1)
+{
+print(arr2(i)(j)+" ");//print Array Element
+}
+println();
+}for(i<-0 to 1)
+{
+for(j<-0 to 1)
+{
+rarry(i)(j)=0; for(k<-0 to 1)
+rarry(i)(j)=rarry(i)(j)+arr1(i)(k)*arr2(k)(j);//multiplication
+}
+}
+println("RESULTANT MATRIX");
+for(i<-0 to 1)
+{
+for(j<-0 to 1)
+{
+print(rarry(i)(j)+" ");//print Array Element
+}
+println();
+}
+var det=(rarry(0)(0)*rarry(1)(1))-
+(rarry(0)(1)*rarry(1)(0)); println("Determinant:"+det);
+}
+}
+
+
+___________________________________________#####______________________________________________________
+
+
+1. Model the following scientist information as a document database.
+The document keeps information about the scientist who has contributed in various
+fields like Artificial intelligence, Fortran etc. The scientist may have contributed in more
+than one filed. The scientist may have received more than one awards for his contribution
+in various fields.
+2. Assume appropriate attributes and collections as per the query requirements. [5]
+3. Insert at least 10 documents in each collection. [10]
+4. Answer the following Queries. a. List names of all scientists whose last name starts with
+a N [21/2]
+b. List all scientist who were born after 1/1/1950 and are still alive [21/2]
+c. For each year list the identifiers of scientists thatreceived an award in that year[5]
+d. List all scientists who have received “Turing Machine Award” before 1980 and has
+made contributed in 4 fields
+2) & 3)
+db.scien.insert({fname:"mukesh",lname:"navse",BOD:newDate("1952-04-18"),DOD:"still
+alive",field:["tcs","java","c","sql"],award:[{name:"turingmachine",year:1976},{name:"robot
+ic",year:1 998},{name:"codetalent",year:1995}]})
+db.scien.insert({fname:"abhi",lname:"nalave",BOD:newDate("1972-04-18"),DOD:"still
+alive",field:["tcs","java","sql"],award:[{name:"codemaster",year:1976},{name:"robot",year
+:1998},{na me:"puzzletalent",year:1995}]})
+>db.scien.insert({fname:"manisha",lname:"hipparkar",BOD:new
+Date("1942-04-18"),DOD:new
+Date("2009-08-06"),field:["tcs","java"],award:[{name:"topper",year:1976},{n
+ame:"puraskar",year:1998},{name:"puzzletalent",year:1995}]})
+4)
+> db.scien.find({ lname: { $regex: /n/ } })> db.scien.find({BOD:{"$gt":new Date("1950-03-11")},DOD:"still alive"})
+>db.scien.aggregate([{$group:{_id:{year:"$award.year",Name:"$award.name"}}}])
+> db.scien.find({"award.name":"turingmachine","award.year":{$lt:1980},field:{$size:4}})
+
+___________________________________________#####______________________________________________________
+
+
+Slip 8:-
+Create array of strings and read a new string from user. Display all the strings from the
+array that contain the new string.
+(accept array and string: 10M check string logic : 10M display 10M)
+object string4
+{
+def main(args : Array[String])
+{
+val fruits = new Array[String](5);
+var i : Int = 0;
+println("Enter 5 fruits name");
+for(i<-0 to 4)
+{
+fruits(i)=scala.io.StdIn.readLine();
+}
+println("Fruits name in given array is ");
+for(i<-0 to 4)
+{
+println(fruits(i));
+}
+}
+}
+
+
+___________________________________________#####______________________________________________________
+
+
+1. Model the following inventory information as a document database.
+The inventory keeps track of various items. The items are tagged in various categories.
+Items may be kept in various warehouses and each warehouse keeps track of the quantity
+of the item.
+2. Assume appropriate attributes and collections as per the query requirements [5]
+3. Insert at least 10 documents in each collection. [10]
+4. Answer the following Queries. a. List all items from the inventory where the status
+equals "D" and qty is greater than 30 [21/2]
+b. List all items which have 3 tags [21/2]
+c. List all items having status equal to “A” or having quantity less than 30 and height of the
+product should be greater than 10 [5]
+d. Find all warehouse that keeps item “Planner” and having instock quantity less than 20
+2) & 3)
+>db.item.insert({itemName:"planner",tag:["wash","food","vehicle"],status:"A",height:5,wid
+th:9,inst
+ack:15,warehouse:[{location:"pune",quntity:36},{location:"mumbai",quntity:67}]})
+>db.item.insert({itemName:"toycar",tag:["food","vehicle"],status:"D",height:5,width:9,inst
+ack:15,wa rehouse:[{location:"pune",quntity:36},{location:"mumbai",quntity:67}]})
+db.item.insert({itemName:"roboticcar",tag:["food","vehicle"],status:"A",height:9,width:9,i
+nstack
+:5,warehouse:[{location:"pune",quntity:26},{location:"mumbai",quntity:17}]})
+>db.item.insert({itemName:"bag",tag:["food","vehicle","school","travel"],status:"c",height:
+19,width:
+39,instack:75,warehouse:[{location:"surat",quntity:26},{location:"lanavala",quntity:17}]}
+)4)
+> db.item.find({status:"D","warehouse.quntity":{$gt:30}})
+> db.item.find({"tag":{$size:3}})
+>db.item.find({$or:[{status:"A"},{"warehouse.quntity":{$lt:30},height:{$gt:10}}]})
+> db.item.find({itemName:"planner",instack:{$lt:20}})
+
+
+___________________________________________#####______________________________________________________
+
+
+Slip 9:-
+Create a MAP for storing the following information about 5 students, where each Student
+is described with Name and percentage. Display Student information with highest
+percentage.
+(create MAP : 10M select with highest logic: 10M display : 10M)
+class Student(var rno:Int,var sname:String,var sub1:Int,var sub2:Int)
+{
+var ptage:Float=(sub1+sub2)/2; def display()
+{
+println("Roll No:"+rno); println("Name:"+sname); println("Percentage:"+ptage);
+}
+}
+object Slip9
+{
+def main(args:Array[String])
+{
+val s1=new Student(1,"Akshay Borse",80,70); val s2=new Student(2,"Sumit
+Amritkar",75,85); val s3=new Student(3,"Vishnu Khatale",77,87); val s4=new
+Student(4,"Aniket Borse",89,99);
+val s5=new Student(5,"Tushar Amrutkar",84,87);
+val m1:Map[Int,Student]=Map(1->s1,2->s2,3->s3,4->s4,5->s5); var max=m1(1).ptage;
+for((k,v)<-m1)
+{
+if(m1(k).ptage>max) max=m1(k).ptage;
+}
+for((k,v)<-m1)
+{
+if(m1(k).ptage==max) m1(k).display()}
+}
+}
+
+___________________________________________#####______________________________________________________
+
+
+1. Model the following transaction information as a document database.
+The transaction keep track of items purchased by a customer and the way in which the
+payment was done – Cash, Credit Card or Debit Card
+2. Assume appropriate attributes and collections as per the query requirements. [5]
+3. Insert at least 10 documents in each collection. [10]
+4. Answer the following Queries. a. Find all transactions which were made by the user
+“John” [21/2 ]
+b. Find all the transactions which were made using debit card [21/2]
+c. Find transaction id and total amount of purchase made using a credit card [5]
+d. Find the total payment for each payment type [5]
+
+
+2) & 3)
+>db.transaction.insert({itemName:"toy",customerName:"john",paymentmode:"debitcard"
+,payment: 8000})
+>db.transaction.insert({itemName:"car",customerName:"john",paymentmode:"creditcard
+",payment
+:4000})
+>db.transaction.insert({itemName:"bag",customerName:"mukesh",paymentmode:"cash",
+payment:5 000})
+>db.transaction.insert({itemName:"airlineticket",customerName:"rohit",paymentmode:"
+cash",paym ent:50090})>db.transaction.insert({itemName:"mango",customerName:"abhijeet",paymentmode:"cre
+ditcard",p ayment:8000})
+>db.transaction.insert({itemName:"bus",customerName:"manasi",paymentmode:"debitc
+ard",paym ent:7000})
+
+4)
+> db.transaction.find({customerName:"john"})
+> db.transaction.find({paymentmode:"debitcard"})
+>db.transaction.aggregate([{$match:{"paymentmode":"creditcard"}},{$group:{_id:null,"co
+unt":{"$s um":"$payment"}}}])
+>db.transaction.aggregate([{$group:{_id:"$paymentmode","count":{"$sum":"$payment"}}}
+])
+
+___________________________________________#####______________________________________________________
+
+
+Slip 10:-
+Create abstract class Shape with abstract functions volume() and display(). Extend two
+classes Cube and Cylinder from it. Create object of Cube and Cylinder, Calculate volume of
+each and display it. (create abstract class :5M extend classes : 5M functions: 5M each
+display: 10M)
+
+
+abstract class Shape
+{
+def volume();
+def display();
+}
+class Cube extends Shape{
+var a:Double = 0.0;
+var v:Double = 0.0;
+def volume()
+{
+println("Enter side of cube: ");
+a= scala.io.StdIn.readDouble();
+v= a*a*a;
+}
+def display(){
+println("Volume of Cube is : " + v);
+} }
+class Cylinder extends Shape{
+var r:Double = 0.0;
+var h:Double = 0.0;
+var v:Double = 0.0;
+def volume(){
+println("Enter radius of cylinder: ");r= scala.io.StdIn.readDouble();
+println("Enter height of cylinder : ");
+h= scala.io.StdIn.readDouble();
+v = 3.14*r*r*h;
+}
+def display(){
+println("Volume of Cylinder is : " + v) ;
+}
+}
+object runclass4 {
+def main(args: Array[String]){
+var c1 = new Cube() ;
+var c2 = new Cylinder() ;
+c1.volume();
+c1.display();
+c2.volume();
+c2.display();
+} }
+
+abstract class Shape
+{
+def volume():Double; def display();
+}
+class Cylinder(var r:Int,var h:Int) extends Shape
+{
+def volume():Double={
+return 3.14*r*r*h;
+}
+def display()
+{
+println("Volume Cylinder :"+volume());
+}
+}
+class Cube(var s:Int) extends Shape
+{
+def volume():Double=
+{
+return s*s*s;
+}
+def display()
+{
+println("Volume of cube:"+volume());
+}
+}
+object Slip10
+{
+def main(args:Array[String])
+{
+val cyl=new Cylinder(1,1); cyl.display();
+val cub=new Cube(3); cub.display();
+}
+}
+
+___________________________________________#####______________________________________________________
+
+
+1. Model the following Online Mobile Shopping information as a document database.
+Consider online mobile shopping where the customer can get different models from
+different brands. Customers can rate the brands and the models individually.
+2. Assume appropriate attributes and collections as per the query requirements [5]
+3. Insert at least 10 documents in each collection. [10]
+4. Answer the following Queries. a. List the mobiles having RAM and ROM as 3GB and
+32GB. [21/2 ]
+b. List the customers who bought Samsung J6. [21/2 ]
+c. List the names of the distinct brands available. Also display the name of the brand with
+highest rating. [5]
+d. List all the customers in ascending order who bought iPhone 7plus. [5]
+
+
+2)
+>db.custome.insert({cname:"mukesh",modelname:"samsungj6",amount:20000})
+>db.custome.insert({cname:"abhijeet",modelname:"samsungj6",amount:20060})
+db.custome.insert({cname:"manasi",modelname:"iphone7+",amount:30060})
+db.custome.insert({cname:"manisha",modelname:"iphone7+",amount:30070})
+db.custome.insert({cname:"dipak",modelname:"iphone7+",amount:30800})
+
+3)
+>db.shopping.insert({brandname:"samsung",rate:6,model:[{mname:"s40",ram:"3GB",ro
+m:"32GB",ra
+te:4},{mname:"j6",ram:"4GB",rom:"32GB",rate:7},{mname:"j7",ram:"6GB",rom:"64GB",rat
+e:6}]})
+>db.shopping.insert({brandname:"vivo",rate:8,model:[{mname:"Y55",ram:"3GB",rom:"32
+GB",rate:6},{mname:"Ys5",ram:"4GB",rom:"32GB",rate:4},{mname:"YYY",ram:"6GB",rom:"64GB",rat
+e:6}]})
+
+4)
+>db.shopping.find({"model.ram":"3GB","model.rom":"32GB"})
+> db.custome.find({modelname:"samsung j6"})
+> db.shopping.aggregate([{"$sort":{"rate":-1}},{"$limit":1},{$group:{_id:"$brandname"}}])
+> db.custome.find().sort( { "cname": 1 } )
+
+___________________________________________#####______________________________________________________
+
+
+Slip 11:-
+Write a program to read two strings. Find the occurrence of second string in the first
+string. Reverse the case of each occurrence in the string and display resultant string.
+(read : 5M find occurance:10M reverse : 10M display: 5M)
+
+
+object string3
+{
+def main(args : Array[String])
+{
+println("Enter first string:");
+val str1= scala.io.StdIn.readLine();
+println("First String is = "+str1);
+println("Enter second string:");
+val str2= scala.io.StdIn.readLine();
+println("Second String is = "+str2);
+var i:Int =0;
+var j:Int =0;
+var k:Int =0;
+var str_rem: String= “ “;
+for (i <- 0 to str1.length())
+{
+for (j <-0 to str2.length())
+{
+if (str1(i) == str2(j))
+{
+continue;
+}
+else{
+str_rem(k) = str2(j);
+k ++;
+}
+}
+str_rem(k) = '\0';
+str2 = String.valueOf(str_rem);
+k = 0;
+}
+println ("On removing characters from second string we get:" + str_rem);
+}
+}
+{
+def reverseString(ch:Char):Char=
+{
+if(ch.isLower) ch.toUpper; else ch.toLower;
+}
+def main(args:Array[String])
+{
+var ch=' '; var str=" ";
+println("Enter String:"); str=scala.io.StdIn.readLine(); var str1=new StringBuilder(str);
+println("Enter character:"); ch=scala.io.StdIn.readChar();
+str1.deleteCharAt(str1.indexOf(ch.toString()));
+var str3=str1.deleteCharAt(str1.lastIndexOf(ch.toString())).toString; var
+str4=str3.map(reverseString)
+println(str4);
+}
+}
+
+___________________________________________#####______________________________________________________
+
+
+Slip 12:-
+Write a program for multiplication of two matrices. Find determinant of resultant matrix.
+(Accept matrix: 5M Multiplication : 10M Determinant : 10M Display:5M)
+
+
+object Slip12
+{
+def main(args:Array[String])
+{
+val arr1=Array.ofDim[Int](2,2);//1st array val arr2=Array.ofDim[Int](2,2);//2nd array
+var rarry=Array.ofDim[Int](2,2)//resultant Array println("Enter Matrix1");
+for(i<-0 to 1)
+{
+for(j<-0 to 1)
+{
+arr1(i)(j)=scala.io.StdIn.readInt();//read Array1 element
+}
+}
+println("Enter Matrix2"); for(i<-0 to 1)
+{
+for(j<-0 to 1)
+{
+arr2(i)(j)=scala.io.StdIn.readInt();//read Array2 element
+}
+}
+println("MATRIX -1");
+for(i<-0 to 1)
+{
+for(j<-0 to 1){
+print(arr1(i)(j)+" ");//print Array Element
+}
+println();
+}
+println("MATRIX -2");
+for(i<-0 to 1)
+{
+for(j<-0 to 1)
+{
+print(arr2(i)(j)+" ");//print Array Element
+}
+println();
+}for(i<-0 to 1)
+{
+for(j<-0 to 1)
+{
+rarry(i)(j)=0; for(k<-0 to 1)
+rarry(i)(j)=rarry(i)(j)+arr1(i)(k)*arr2(k)(j);//multiplication
+}
+}
+println("RESULTANT MATRIX");
+for(i<-0 to 1)
+{
+for(j<-0 to 1)
+{
+print(rarry(i)(j)+" ");//print Array Element
+}
+println();
+}
+var det=(rarry(0)(0)*rarry(1)(1))-
+(rarry(0)(1)*rarry(1)(0)); println("Determinant:"+det);
+}
+}
+
+
+___________________________________________#####______________________________________________________
+
+
+Model the following Dairy Brand information as a graph model, and answer the following
+queries using Cypher.There are various dairy brands like Amul, Go, Britannia, Gokul etc. Their popularity
+varies across different states in India. The popularity is measured as %, with a high
+popularity defined as >=90%, Medium Popularity between 50 to 90%, and Low
+popularity <50%. Each brand manufactures various types of Dairy products like milk,
+butter, cheese, curd etc. The milk product can be categorized into low fat/medium fat or
+high fat content type.
+1. Identify the labels and relationships, along with their properties, and draw a high-level
+Graph model. [5]
+2. Create nodes and relationships, along with their properties, and visualize your actual
+Graph model. [10]
+3. Answer the following queries using Cypher:
+a. List the names of different brands considered in your graph.
+[21/2]
+b. List the brands that are highly popular in Maharashtra. [21/2]
+c. List the popular cheese brands in Gujarat. [5]
+d. List the brands manufacturing “low” fat content milk. [5]
+[Note: You may Assume additional labels and properties depending on the query
+requirements]Slip 13:-
+Write a program to merge two sets of integers and calculate sum of all integers in the
+merged set. Also display largest and smallest element from merged set.
+(Merge : 10M sum :5M largest :5M smallest :5 M display : 5M)
+
+
+object setmerge
+{
+def main(args: Array[String])
+{
+val num1 = Set(5,16,9,20,30);
+val num2 = Set(15,3,7)
+val num3 = num1.++(num2)
+val result = num3.sum
+val avg = result / (num3.count)
+val prod = num3.product
+println( "Average of Set Element is : " + avg )
+println( "Product of element in Set : " + prod )
+}}
+Output:
+println("num1 list is" +num1);
+println("num2 list is" +num2);
+println("num3 list is" +num3);
+Average of Set Element is : 10
+Product of element in Set :13608000
+------------------------------------------
+object setmaxmin
+{def main(args: Array[String])
+{
+val num = Set(5,6,9,20,30,45)
+// find min and max of the elements
+println( "Min element in Set : " + num.min )
+println( "Max element in Set : " + num.max )
+}
+}
+Output:
+Min element in Set : 5
+Max element in Set :45
+
+
+___________________________________________#####______________________________________________________
+
+
+Slip 14:-
+Design an abstract class Employee with computeSal() as an abstract function. Create two
+subclasses Worker and Manager. Salary of worker should be calculated on hourly basis of
+work and Salary of Manager should be calculated on monthly basis with additional
+incentives. Create five objects each of Worker and Manager class, and display their
+details.
+(abstract class and function :10M subclasses:5M salary calculation: 5 M each display:5M)
+
+
+abstract class Employee{
+def computesal();
+}
+class Worker extends Employee{
+var hr:Double = 0.0;
+var rate:Double = 0.0;
+var tot:Double = 0.0;
+def computesal(){
+println("Enter no of hour emp work: ");
+hr= scala.io.StdIn.readDouble();
+println("Enter rate per hour of work: ");
+rate= scala.io.StdIn.readDouble();
+tot = hr*rate;
+println("Total Salary of worker is : " +tot);
+} }
+Class Manager extends Employee{
+var basic:Double = 0.0;
+var hra:Double = 0.0;
+var da:Double = 0.0;
+var ta:Double = 0.0;
+var IT:Double = 0.0;
+var PF :Double = 0.0;var netsal:Double = 0.0;
+def computesal(){
+println("Enter basic salary of manager: ");
+basic= scala.io.StdIn.readDouble();
+hra = 0.10*basic;
+ta = 0.08*basic;
+da = 0.12*basic;
+IT = 0.15*basic;
+PF = 0.12*basic;
+netsal = (basic+hra+da+ta) - (IT+ PF);
+println("Salary of Manager is : " + netsal) ;
+}
+}
+object runclass7
+{
+def main(args: Array[String]){
+var e1 = new Worker() ;
+var e2 = new Manager() ;
+e1.computesal();
+e2.computesal();
+} }
+
+
+___________________________________________#####______________________________________________________
+
+
+Slip 15:-
+Write a program to create a list of 1 to 100 numbers. Create second list from first list
+selecting numbers which are perfect square. Display it.
+(create first list: 10M find perfect square : 10M create second list :5 M display : 5M)
+
+
+object List6
+{
+def main(args: Array[String])
+{
+val x1= List.range(1,100)
+val x2 = x1.filter(a => a % 10 == 0)
+println("x1 list is" +x1);
+println("x2 list is" +x2);
+}
+
+___________________________________________#####______________________________________________________
+
+
+Slip 16:-
+Write user defined functions to reverse the case of a given string and call the function
+using MAP.
+(user defined function :10 M reverse case logic : 10M
+call using MAP : 10M)
+
+
+object mapfun
+{
+def reverse(s): (a:String):String =
+str = ""
+for i in s:
+str = i + str
+return str
+{
+a. def reverse();
+}
+def reverse (a:String):String = {
+a.toreverse str ();
+}
+def main(args:Array[String])
+{
+val l = List("XYZ","LMN");
+val new_collection1 = l.map(reverse str) ;
+println(new_collection1);
+val u = List("abc","pqr");
+val new_collection2 = u.map(str) ;
+println(new_collection2);
+}}
+
+___________________________________________#####______________________________________________________
+
+
+Slip 17:-
+Define a class SavingAccount (accNo, name, balance, minBalance). Define appropriate
+constructors and operations withdraw(), deposit(), viewBalance(). Create an array of
+SavingAccount objects and perform operations and display them.
+(define class:5M constructors: 10M operations: 5 M each)
+
+
+class caccount(ano:Int,name:String,var bal:Double,mbal:Double){
+def withdral()
+{
+var a:Int=0;
+println("enter amount to withdraw");
+a= scala.io.StdIn.readInt();
+var temp:Double=0.0;
+temp=bal;
+temp=temp-a;
+if(temp<mbal)
+{
+println("BALANCE CANNOT BE LESS THAN MINIMUM BALANCE");
+}
+else
+{
+bal=temp;
+} temp=0.0;
+}
+def deposit()
+{
+var a:Int=0;
+println("\nEnter amount to deposit");a= scala.io.StdIn.readInt();
+bal=bal+a;
+}
+def viewbal()
+{
+println("\nAccount Number: "+ano + "\nAccount Holder Account: " + name+ "\nAccount
+Balance:
+" +bal+ "\nAccount minimum balance: " +mbal);
+}}
+object runclass1
+{
+def main(args : Array[String])
+{
+var ano1:Int=0;
+var name1:String="";
+var bal1:Double=0.0;
+var mbal1:Double=0.0;
+print("Enter account no: ");
+ano1= scala.io.StdIn.readInt();
+print("Enter customer name: ");
+name1= scala.io.StdIn.readLine();
+print("Enter balance: ");
+bal1= scala.io.StdIn.readDouble();
+print("Enter min bal: ");
+mbal1= scala.io.StdIn.readDouble();
+var c = new caccount(ano1,name1,bal1,mbal1);
+c.deposit();
+c.viewbal();c.withdral();
+c.viewbal();
+}}
+
+___________________________________________#####______________________________________________________
+
+Slip 18:-
+Write a program to calculate sum of all perfect numbers between 1 and 100. Display
+perfect numbers also.
+(find Perfect number : 10 M sum : 10M display numbers and sum: 10M)
+
+
+def isPerfect (n: Int) = n = int(input("Enter any number: "))
+sum1 = 0
+for i in range(1, n):
+if(n % i == 0):
+sum1 = sum1 + i
+def main(args: Array[String]) {
+var sum:Int=0;
+for (i <- 1 to 100 )
+if (sum1 == n):
+print("The number is a Perfect number!")
+else:
+print("The number is not a Perfect number!")
+{ if (
+isPerfect (i))
+{
+sum=sum+i;
+println(i)
+}}
+println("sum= "+sum);}
+
+___________________________________________#####______________________________________________________
+
+
+Slip 19:-
+A. Create lists using five different methods and display each of them.(List style, java style,
+fill, range, tabulate methods)
+(each method : 2 M display : 1M each)
+(Create list with function: 5M Create second list : 5M display : 5M)
+Create lists using five different methods and display each of them.(List style, java style,
+fill, range, tabulate methods) (each method : 2 M display : 1M each)
+
+
+Ans:-
+import scala.collection.mutable._
+object List1
+{
+def main (args: Array[String])
+{
+val list = List(1,2,3)
+val x1 = List[Number](1, 2.0, 33d, 0x1)
+val x2= List.range(1,10)
+val x3= List.fill(4)("swara")
+val x4= List.tabulate(3)(n => n * n)
+println("x1 list is" +x1);
+println("x2 list is" +x2);
+println("x3 list is" +x3);
+println("x4 list is" +x4);
+}
+}
+********OUTPUT********x1 list isList(1, 2.0, 33.0, 1)
+x2 list isList(1, 2, 3, 4, 5, 6, 7, 8, 9)
+x3 list is List(swara,swara,swara,swara)
+x4 list isList(0, 1, 4)
+B:- Create a list of 50 members using function 2n+3. Create second list excluding all
+elements multiple of 5. (Create list with function: 5M Create second list : 5M display : 5M)
+Ans:- Slip of program List(6 pages) 7 th prog.
+
+
+___________________________________________#####______________________________________________________
+
+
+Slip 20:-
+Create a list of 10 random numbers. Create another list from members of first list using
+function 3n2+4n+6. Display second list in ascending order.
+(random numbers list: 10M create list with function: 10M display with ascending order :
+10M)
+
+
+def main(args: Array[String]) {
+print("\nHow many numbers you want to calculate: ");
+val n=scala.io.StdIn.readInt();
+val i:Int=0;
+for(i<-1 to n)
+{
+print("\n\tENTER NUMBER:"+i+"-->");
+val n=scala.io.StdIn.readInt();
+var sum:Int=0;
+for(i<-1 to n-1)
+{
+if(n%i==0)
+{
+sum=sum+i;
+}
+}
+import scala.collection.mutable._
+object List5
+{
+def main(args: Array[String])
+{
+val x= List.tabulate(10)(n => 3*n * n + 4*n +6)
+println("x list is" +x);}}
