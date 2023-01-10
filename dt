@@ -1,6 +1,7 @@
 #TeleGram @M2LINKS
 
 Slip 1:-
+
 Write a program to create a MAP with empname and deptname. Print details of
 all employees working in the same department, as “Mr. Joshi”.
 (create MAP : 10M logic: 10M print :5M)
