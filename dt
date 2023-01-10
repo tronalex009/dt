@@ -51,7 +51,8 @@ d. Find all female students which either live in Pune and Mumbai [21/2]
 >db.student1.insert({name:"mukesh",course:[{coursename:"bcs"},{coursename:"bvoc"}],marks:60,a ge:22,gender:"male",city:"pune"})
 >db.student1.insert({name:"manisha",course:[{coursename:"mcs"},{coursename:"bvoc"}],marks:90, age:22,gender:"female",city:"mumbai"})
 >db.student1.insert({name:"manasi",course:[{coursename:"mcs"},{coursename:"bvoc"}],marks:92,a ge:22,gender:"female",city:"latur"})
->db.student1.insert({name:"apurva",course:[{coursename:"mcs"},{coursename:"bvoc"}],marks:37,a ge:22,gender:"female",city:"sasvad"})>db.student1.insert({name:"arati",course:[{coursename:"mcs"},{coursename:"bvoc"}],marks:32,age: 22,gender:"female",city:"bekarai"})
+>db.student1.insert({name:"apurva",course:[{coursename:"mcs"},{coursename:"bvoc"}],marks:37,a ge:22,gender:"female",city:"sasvad"})
+>db.student1.insert({name:"arati",course:[{coursename:"mcs"},{coursename:"bvoc"}],marks:32,age: 22,gender:"female",city:"bekarai"})
 
 4)
 > db.student1.count({marks:{$gt:80}})
@@ -113,10 +114,10 @@ d. List all the orders along with their invoice for “Mr. Arun Kumar”.[5]
 
 
 2)
-db.product.insert({name:"robot",price:12000})
-db.product.insert({name:"toycar",price:2000})
-db.product.insert({name:"cricketset",price:9000})
-db.product.insert({name:"studymaterial",price:19000})
+>db.product.insert({name:"robot",price:12000})
+>db.product.insert({name:"toycar",price:2000})
+>db.product.insert({name:"cricketset",price:9000})
+>db.product.insert({name:"studymaterial",price:19000})
 
 3)
 >db.order.insert({orderno:3736,custName:"arunkumar",product:{productName:"toycar",price:20000},order_date:"12/2/2019",stetus:"processed",Totalbill:2039,invoice:{invoiceNO:67564,bill:2039,date:"17/2/2019"}})
