@@ -1,7 +1,11 @@
+#TeleGram @M2LINKS
+
 Slip 1:-
 Write a program to create a MAP with empname and deptname. Print details of
 all employees working in the same department, as “Mr. Joshi”.
 (create MAP : 10M logic: 10M print :5M)
+
+
 class Employee(var ename:String,var dept:String)
 {
 def display()
@@ -40,6 +44,8 @@ b. List the name and age of the oldest 5 students with marks less than 40
 c. Use a cursor to display names of students whose percentage is greater than 70.
 [5]
 d. Find all female students which either live in Pune and Mumbai [21/2]
+
+
 2) And 3)=>
 >db.student1.insert({name:"Abhi",course:[{coursename:"bcs"},{coursename:"bvoc"}],mar
 ks:80,age: 21,gender:"male",city:"pune"})
@@ -52,6 +58,7 @@ marks:92,a ge:22,gender:"female",city:"latur"})
 >db.student1.insert({name:"apurva",course:[{coursename:"mcs"},{coursename:"bvoc"}],
 marks:37,a ge:22,gender:"female",city:"sasvad"})>db.student1.insert({name:"arati",course:[{coursename:"mcs"},{coursename:"bvoc"}],ma
 rks:32,age: 22,gender:"female",city:"bekarai"})
+
 4)
 > db.student1.count({marks:{$gt:80}})
 > db.student1.find({marks:{$lt:40}})
@@ -70,6 +77,8 @@ and octal using user defined functions.
 B. Write a program to calculate average of all prime numbers between n1
 and n2 (take n1 and n2 from user).
 (accept n1, n2 : 5M prime numbers : 5M average :5M)
+
+
 object Slip2_1
 {
 def binary(num:Int)
@@ -108,11 +117,14 @@ processed.
 b. List the details of orders with a value >10000. [21/2]
 c. List all the orders which has not been processed (invoice not generated). [5]
 d. List all the orders along with their invoice for “Mr. Arun Kumar”.[5]
+
+
 2)
 db.product.insert({name:"robot",price:12000})
 db.product.insert({name:"toycar",price:2000})
 db.product.insert({name:"cricketset",price:9000})
 db.product.insert({name:"studymaterial",price:19000})
+
 3)
 >db.order.insert({orderno:3736,custName:"arunkumar",product:{productName:"toycar",price:2000
 0},order_date:"12/2/2019",stetus:"processed",Totalbill:2039,invoice:{invoiceNO:67564,bill:2039,dat
@@ -124,6 +136,7 @@ te:"17/3/2019"}})
 _date:"15/5/2019",stetus:"in process",Totalbill:9050})
 >db.order.insert({orderno:3739,custName:"mukeshpatil",product:{productName:"studentmaterial",
 price:19000},order_date:"15/8/2019",stetus:"in process",Totalbill:19080})
+
 4)
 > db.product.find().pretty()
 > db.order.find({Totalbill:{$lt:10000}})
@@ -138,6 +151,7 @@ Create an abstract class Order (id, description). Derive two classes Purchase Or
 Sales Order with details of Supplier and Customer respectively. Create object of each
 Purchase Order And Sales Order. Display the details of the supplier and customer.
 (abstract class : 5M derivation : 20 M display : 10M)
+
 abstract class Order(id:Int, description:String){
 def display();
 }
@@ -212,13 +226,16 @@ db.book.insert({BName:"Two
 Saints",cost:1700,author:"raguramkrishna",published:2017})
 db.book.insert({BName:"ramkrushna
 paramhans",cost:800,author:"raguramkrishna",published: 2017})
->db.book.insert({BName:"DMS",cost:300,author:"raguramkrishna",published:2005})3)
+>db.book.insert({BName:"DMS",cost:300,author:"raguramkrishna",published:2005})
+
+3)
 db.publisher.insert({pname:"OReilly",language:"English",books:[{BName:"ramkrushna
 paramhans"},{BName:"Two Saints"}],city:"mumbai"})
 >db.publisher.insert({pname:"vision",language:"English",books:[{BName:"DMS"}],city:"pu
 ne"})
 db.publisher.insert({pname:"OReilly",language:"marathi",books:[{BName:"shyamchi
 aai"}],city:"mumbai"})
+
 4)
 > db.publisher.find({city:"mumbai"})
 > db.book.find({cost:{$lt:1000}})
@@ -233,6 +250,7 @@ Write a program to calculate transpose of a matrix and check if the resultant ma
 lower triangular or not.
 /* C program to check if the given matrix is Lower triangular or not */
 //Without using pointers. Program is solved using pointers, below this solution
+
 #include<stdio.h>
 #define N 3
 int check_lower_triangular_matrix(int mat[N][N])
@@ -244,8 +262,8 @@ if (mat[i][j] != 0)
 return 0;
 return 1;
 }
--------------------------------------------------------------------------------------------------------------------------
-----------PUT
+
+OUTPUT
 Enter the order of the matrix : 3
 Input the matrix elements :
 1 0 0
@@ -267,22 +285,17 @@ specialization. [21/2]
 b. List the Names of doctors who are visiting “Jehangir Hospital ” on Mondays. [21/2]
 c. List the names of hospitals which are multispecialty hospitals where Dr. Kale visits. [5]
 d. List the names of people who have given a rating of (>=3) for “Jehangir Hospital”
+
 2)
->db.Hospital.insert({Hno:1,Hname:"AAA",Specialization:["Pediatric","Gynaec","Orthopaed
-ic"],Peopl e:[{Pname:"PQR",Rating:4},{Pname:"SDE",Rating:5}],Doctor:[{"Dname" :
-"WWW",
-"Visit" : "Sunday"}]})
->db.Hospital.insert({Hno:2,Hname:"BBB",Specialization:["Gynaec","Orthopaedic"],People
-:[{Pname:"
-POP",Rating:2},{Pname:"SDE",Rating:3}],Doctor:[{"Dname":"XXX",Visit:"Monday"}]})
->db.Hospital.insert({Hno:3,Hname:"CCC",Specialization:["Gynaec","Orthopaedic","Pediatr
-ic"],People
-:[{Pname:"KLO",Rating:3},{Pname:"LPO",Rating:3}],Doctor:[{"Dname" :
-"XXX","Visit":"Tuesday"}]})
-4)a) > db.Hospital.find({Specialization:"Pediatric"})
+>db.Hospital.insert({Hno:1,Hname:"AAA",Specialization:["Pediatric","Gynaec","Orthopaedic"],People:[{Pname:"PQR",Rating:4},{Pname:"SDE",Rating:5}],Doctor:[{"Dname" : "WWW","Visit" : "Sunday"}]})
+>db.Hospital.insert({Hno:2,Hname:"BBB",Specialization:["Gynaec","Orthopaedic"],People:[{Pname:"POP",Rating:2},{Pname:"SDE",Rating:3}],Doctor:[{"Dname":"XXX",Visit:"Monday"}]})
+>db.Hospital.insert({Hno:3,Hname:"CCC",Specialization:["Gynaec","Orthopaedic","Pediatric"],People:[{Pname:"KLO",Rating:3},{Pname:"LPO",Rating:3}],Doctor:[{"Dname" :"XXX","Visit":"Tuesday"}]})
+
+4)
+a)>db.Hospital.find({Specialization:"Pediatric"})
 b)>db.Hospital.find({Hname:"CCC","Doctor.Visit":"Tuesday"})
 c)>db.Hospital.find({Specialization:{$not:{$size:1}},"Doctor.Dname":"XXX"})
-d) > db.Hospital.find({"People.Rating":{ $gt: 3 },Hname:"AAA"})
+d)>db.Hospital.find({"People.Rating":{ $gt: 3 },Hname:"AAA"})
 
 ___________________________________________#####______________________________________________________
 
@@ -291,6 +304,7 @@ Slip 5:-
 Write a program to create two sets of strings and find common strings between them.
 Merge sets after removing common strings. Display resultant set.
 (create sets:10M find common elements:5M merge removing common :10M display:5M)
+
 {
 def main(args:Array[String])
 {
@@ -316,6 +330,8 @@ c. List all the blogs that are tagged a “travel blogs” and were created befo
 have comments written by “Sagar” and commented as “like” [5]
 d. List all the blogs that have comments which are posted before August 2019 or are not
 liked by the user posting the comment [5]
+
+
 2) & 3)
 >db.post.insert({title:"online",url:"www.abc.com",tag:["food","travel"],pname:"mukesh",p
 date:new Date("2019-03-12"),like:89,user:[{name:"abhi",comment:"good",message:"do
@@ -333,6 +349,7 @@ cdate:new Date("2019-03-12"),like:2}]})
 Amit",pda te:new Date("2019-07-12"),like:82,user:[{name:"manisha",comment:"good",message:"dobest",time:"4pm",like:0
 },{name:" manasi",comment:"best",message:"success", cdate:new
 Date("2018-03-12"),like:0}]})
+
 4)
 >db.post.find({tag:"food"})
 >db.post.find({pname:"Amit"})
@@ -348,6 +365,7 @@ Write a program to read a character and a string from user and remove first and 
 occurrence of the character from the string. Display resultant string after reversing its
 case.
 (read : 10 M remove occurance:10M reverse : 5M display :5M)
+
 {
 def reverseString(ch:Char):Char=
 {
@@ -380,11 +398,14 @@ b. List the highest rated tourism industry. [21/2]
 c. List all the details of expenses made by John on his first 3 trips. Also display the total
 expenses. [5]
 d. List the names of the customers who went on a tour to Shillong. [5]
+
+
 2)
 db.turisum.insert({name:"veenaword",rate:9,package:[{pname:"shillong",cost:10000},{p
 nam e:"gujart",cost:7000},{pname:"karnataka",cost:6000}]})
 >db.turisum.insert({name:"rohit",rate:7,package:[{pname:"shillong",cost:10000},{pname
 :"rujan",cos t:7000}]})
+
 3)
 >db.tour.insert({sourc:"john",destination:"shillong",toerisumName:"veenaword",tourisu
 mrate:8000,
@@ -404,6 +425,7 @@ sangita",city:"baramati"},{cname:"manisha",city:"15no"},{cname:"manasi",city:"la
 0400,year:2016,customer:[{cname:"mukesh",city:"pune"},{cname:"abhijeetsangita",city:"
 baramati"}
 ,{cname:"manisha",city:"15no"},{cname:"manasi",city:"latur"}]})
+
 4)
 >db.turisum.find({name:"veena word"}).pretty()
 >db.turisum.find({}).sort({"rate":-1}).limit(1)
@@ -420,6 +442,8 @@ Write a program for multiplication of two matrices. Also check if the resultant 
 upper triangular or not.
 (Validate number of rows and columns before multiplication and give appropriate
 message).
+
+
 {
 def main(args:Array[String])
 {
@@ -494,6 +518,8 @@ b. List all scientist who were born after 1/1/1950 and are still alive [21/2]
 c. For each year list the identifiers of scientists thatreceived an award in that year[5]
 d. List all scientists who have received “Turing Machine Award” before 1980 and has
 made contributed in 4 fields
+
+
 2) & 3)
 db.scien.insert({fname:"mukesh",lname:"navse",BOD:newDate("1952-04-18"),DOD:"still
 alive",field:["tcs","java","c","sql"],award:[{name:"turingmachine",year:1976},{name:"robot
@@ -505,6 +531,7 @@ alive",field:["tcs","java","sql"],award:[{name:"codemaster",year:1976},{name:"ro
 Date("1942-04-18"),DOD:new
 Date("2009-08-06"),field:["tcs","java"],award:[{name:"topper",year:1976},{n
 ame:"puraskar",year:1998},{name:"puzzletalent",year:1995}]})
+
 4)
 > db.scien.find({ lname: { $regex: /n/ } })> db.scien.find({BOD:{"$gt":new Date("1950-03-11")},DOD:"still alive"})
 >db.scien.aggregate([{$group:{_id:{year:"$award.year",Name:"$award.name"}}}])
@@ -517,6 +544,7 @@ Slip 8:-
 Create array of strings and read a new string from user. Display all the strings from the
 array that contain the new string.
 (accept array and string: 10M check string logic : 10M display 10M)
+
 object string4
 {
 def main(args : Array[String])
@@ -536,7 +564,6 @@ println(fruits(i));
 }
 }
 
-
 ___________________________________________#####______________________________________________________
 
 
@@ -552,23 +579,19 @@ b. List all items which have 3 tags [21/2]
 c. List all items having status equal to “A” or having quantity less than 30 and height of the
 product should be greater than 10 [5]
 d. Find all warehouse that keeps item “Planner” and having instock quantity less than 20
+
 2) & 3)
->db.item.insert({itemName:"planner",tag:["wash","food","vehicle"],status:"A",height:5,wid
-th:9,inst
-ack:15,warehouse:[{location:"pune",quntity:36},{location:"mumbai",quntity:67}]})
->db.item.insert({itemName:"toycar",tag:["food","vehicle"],status:"D",height:5,width:9,inst
-ack:15,wa rehouse:[{location:"pune",quntity:36},{location:"mumbai",quntity:67}]})
-db.item.insert({itemName:"roboticcar",tag:["food","vehicle"],status:"A",height:9,width:9,i
-nstack
-:5,warehouse:[{location:"pune",quntity:26},{location:"mumbai",quntity:17}]})
->db.item.insert({itemName:"bag",tag:["food","vehicle","school","travel"],status:"c",height:
-19,width:
-39,instack:75,warehouse:[{location:"surat",quntity:26},{location:"lanavala",quntity:17}]}
-)4)
-> db.item.find({status:"D","warehouse.quntity":{$gt:30}})
-> db.item.find({"tag":{$size:3}})
+>db.item.insert({itemName:"planner",tag:["wash","food","vehicle"],status:"A",height:5,width:9,instack:15,warehouse:[{location:"pune",quntity:36},{location:"mumbai",quntity:67}]})
+>db.item.insert({itemName:"toycar",tag:["food","vehicle"],status:"D",height:5,width:9,instack:15,wa rehouse:[{location:"pune",quntity:36},{location:"mumbai",quntity:67}]})
+>db.item.insert({itemName:"roboticcar",tag:["food","vehicle"],status:"A",height:9,width:9,instack:5,warehouse:[{location:"pune",quntity:26},{location:"mumbai",quntity:17}]})
+>db.item.insert({itemName:"bag",tag:["food","vehicle","school","travel"],status:"c",height:19,width:39,instack:75,warehouse:[{location:"surat",quntity:26},{location:"lanavala",quntity:17}]}
+)
+
+4)
+>db.item.find({status:"D","warehouse.quntity":{$gt:30}})
+>db.item.find({"tag":{$size:3}})
 >db.item.find({$or:[{status:"A"},{"warehouse.quntity":{$lt:30},height:{$gt:10}}]})
-> db.item.find({itemName:"planner",instack:{$lt:20}})
+>db.item.find({itemName:"planner",instack:{$lt:20}})
 
 
 ___________________________________________#####______________________________________________________
@@ -579,6 +602,8 @@ Create a MAP for storing the following information about 5 students, where each 
 is described with Name and percentage. Display Student information with highest
 percentage.
 (create MAP : 10M select with highest logic: 10M display : 10M)
+
+
 class Student(var rno:Int,var sname:String,var sub1:Int,var sub2:Int)
 {
 var ptage:Float=(sub1+sub2)/2; def display()
@@ -621,24 +646,16 @@ d. Find the total payment for each payment type [5]
 
 
 2) & 3)
->db.transaction.insert({itemName:"toy",customerName:"john",paymentmode:"debitcard"
-,payment: 8000})
->db.transaction.insert({itemName:"car",customerName:"john",paymentmode:"creditcard
-",payment
-:4000})
->db.transaction.insert({itemName:"bag",customerName:"mukesh",paymentmode:"cash",
-payment:5 000})
->db.transaction.insert({itemName:"airlineticket",customerName:"rohit",paymentmode:"
-cash",paym ent:50090})>db.transaction.insert({itemName:"mango",customerName:"abhijeet",paymentmode:"cre
-ditcard",p ayment:8000})
->db.transaction.insert({itemName:"bus",customerName:"manasi",paymentmode:"debitc
-ard",paym ent:7000})
+>db.transaction.insert({itemName:"toy",customerName:"john",paymentmode:"debitcard",payment: 8000})
+>db.transaction.insert({itemName:"car",customerName:"john",paymentmode:"creditcard",payment:4000})
+>db.transaction.insert({itemName:"bag",customerName:"mukesh",paymentmode:"cash"payment:5 000})
+>db.transaction.insert({itemName:"airlineticket",customerName:"rohit",paymentmode:"cash",paym ent:50090})>db.transaction.insert({itemName:"mango",customerName:"abhijeet",paymentmode:"creditcard",p ayment:8000})
+>db.transaction.insert({itemName:"bus",customerName:"manasi",paymentmode:"debitcard",paym ent:7000})
 
 4)
 > db.transaction.find({customerName:"john"})
 > db.transaction.find({paymentmode:"debitcard"})
->db.transaction.aggregate([{$match:{"paymentmode":"creditcard"}},{$group:{_id:null,"co
-unt":{"$s um":"$payment"}}}])
+>db.transaction.aggregate([{$match:{"paymentmode":"creditcard"}},{$group:{_id:null,"count":{"$s um":"$payment"}}}])
 >db.transaction.aggregate([{$group:{_id:"$paymentmode","count":{"$sum":"$payment"}}}
 ])
 
@@ -746,24 +763,19 @@ d. List all the customers in ascending order who bought iPhone 7plus. [5]
 2)
 >db.custome.insert({cname:"mukesh",modelname:"samsungj6",amount:20000})
 >db.custome.insert({cname:"abhijeet",modelname:"samsungj6",amount:20060})
-db.custome.insert({cname:"manasi",modelname:"iphone7+",amount:30060})
-db.custome.insert({cname:"manisha",modelname:"iphone7+",amount:30070})
-db.custome.insert({cname:"dipak",modelname:"iphone7+",amount:30800})
+>db.custome.insert({cname:"manasi",modelname:"iphone7+",amount:30060})
+>db.custome.insert({cname:"manisha",modelname:"iphone7+",amount:30070})
+>db.custome.insert({cname:"dipak",modelname:"iphone7+",amount:30800})
 
 3)
->db.shopping.insert({brandname:"samsung",rate:6,model:[{mname:"s40",ram:"3GB",ro
-m:"32GB",ra
-te:4},{mname:"j6",ram:"4GB",rom:"32GB",rate:7},{mname:"j7",ram:"6GB",rom:"64GB",rat
-e:6}]})
->db.shopping.insert({brandname:"vivo",rate:8,model:[{mname:"Y55",ram:"3GB",rom:"32
-GB",rate:6},{mname:"Ys5",ram:"4GB",rom:"32GB",rate:4},{mname:"YYY",ram:"6GB",rom:"64GB",rat
-e:6}]})
+>db.shopping.insert({brandname:"samsung",rate:6,model:[{mname:"s40",ram:"3GB",rom:"32GB",rate:4},{mname:"j6",ram:"4GB",rom:"32GB",rate:7},{mname:"j7",ram:"6GB",rom:"64GB",rate:6}]})
+>db.shopping.insert({brandname:"vivo",rate:8,model:[{mname:"Y55",ram:"3GB",rom:"32GB",rate:6},{mname:"Ys5",ram:"4GB",rom:"32GB",rate:4},{mname:"YYY",ram:"6GB",rom:"64GB",rate:6}]})
 
 4)
 >db.shopping.find({"model.ram":"3GB","model.rom":"32GB"})
-> db.custome.find({modelname:"samsung j6"})
-> db.shopping.aggregate([{"$sort":{"rate":-1}},{"$limit":1},{$group:{_id:"$brandname"}}])
-> db.custome.find().sort( { "cname": 1 } )
+>db.custome.find({modelname:"samsung j6"})
+>db.shopping.aggregate([{"$sort":{"rate":-1}},{"$limit":1},{$group:{_id:"$brandname"}}])
+>db.custome.find().sort( { "cname": 1 } )
 
 ___________________________________________#####______________________________________________________
 
@@ -894,26 +906,7 @@ var det=(rarry(0)(0)*rarry(1)(1))-
 
 ___________________________________________#####______________________________________________________
 
-
-Model the following Dairy Brand information as a graph model, and answer the following
-queries using Cypher.There are various dairy brands like Amul, Go, Britannia, Gokul etc. Their popularity
-varies across different states in India. The popularity is measured as %, with a high
-popularity defined as >=90%, Medium Popularity between 50 to 90%, and Low
-popularity <50%. Each brand manufactures various types of Dairy products like milk,
-butter, cheese, curd etc. The milk product can be categorized into low fat/medium fat or
-high fat content type.
-1. Identify the labels and relationships, along with their properties, and draw a high-level
-Graph model. [5]
-2. Create nodes and relationships, along with their properties, and visualize your actual
-Graph model. [10]
-3. Answer the following queries using Cypher:
-a. List the names of different brands considered in your graph.
-[21/2]
-b. List the brands that are highly popular in Maharashtra. [21/2]
-c. List the popular cheese brands in Gujarat. [5]
-d. List the brands manufacturing “low” fat content milk. [5]
-[Note: You may Assume additional labels and properties depending on the query
-requirements]Slip 13:-
+Slip 13:-
 Write a program to merge two sets of integers and calculate sum of all integers in the
 merged set. Also display largest and smallest element from merged set.
 (Merge : 10M sum :5M largest :5M smallest :5 M display : 5M)
@@ -948,6 +941,7 @@ println( "Min element in Set : " + num.min )
 println( "Max element in Set : " + num.max )
 }
 }
+
 Output:
 Min element in Set : 5
 Max element in Set :45
