@@ -47,23 +47,16 @@ d. Find all female students which either live in Pune and Mumbai [21/2]
 
 
 2) And 3)=>
->db.student1.insert({name:"Abhi",course:[{coursename:"bcs"},{coursename:"bvoc"}],mar
-ks:80,age: 21,gender:"male",city:"pune"})
->db.student1.insert({name:"mukesh",course:[{coursename:"bcs"},{coursename:"bvoc"}],
-marks:60,a ge:22,gender:"male",city:"pune"})
->db.student1.insert({name:"manisha",course:[{coursename:"mcs"},{coursename:"bvoc"}]
-,marks:90, age:22,gender:"female",city:"mumbai"})
->db.student1.insert({name:"manasi",course:[{coursename:"mcs"},{coursename:"bvoc"}],
-marks:92,a ge:22,gender:"female",city:"latur"})
->db.student1.insert({name:"apurva",course:[{coursename:"mcs"},{coursename:"bvoc"}],
-marks:37,a ge:22,gender:"female",city:"sasvad"})>db.student1.insert({name:"arati",course:[{coursename:"mcs"},{coursename:"bvoc"}],ma
-rks:32,age: 22,gender:"female",city:"bekarai"})
+>db.student1.insert({name:"Abhi",course:[{coursename:"bcs"},{coursename:"bvoc"}],marks:80,age: 21,gender:"male",city:"pune"})
+>db.student1.insert({name:"mukesh",course:[{coursename:"bcs"},{coursename:"bvoc"}],marks:60,a ge:22,gender:"male",city:"pune"})
+>db.student1.insert({name:"manisha",course:[{coursename:"mcs"},{coursename:"bvoc"}],marks:90, age:22,gender:"female",city:"mumbai"})
+>db.student1.insert({name:"manasi",course:[{coursename:"mcs"},{coursename:"bvoc"}],marks:92,a ge:22,gender:"female",city:"latur"})
+>db.student1.insert({name:"apurva",course:[{coursename:"mcs"},{coursename:"bvoc"}],marks:37,a ge:22,gender:"female",city:"sasvad"})>db.student1.insert({name:"arati",course:[{coursename:"mcs"},{coursename:"bvoc"}],marks:32,age: 22,gender:"female",city:"bekarai"})
 
 4)
 > db.student1.count({marks:{$gt:80}})
 > db.student1.find({marks:{$lt:40}})
-> var my=db.student.find({marks:{$gt:70}});
-while(my.hasNext()){print(tojson(my.next()));}
+> var my=db.student.find({marks:{$gt:70}});while(my.hasNext()){print(tojson(my.next()));}
 >db.student1.find({gender:"female",$or:[{city:"pune"},{city:"mumbai"},{marks:{$lt:50}}]}
 )
 
@@ -126,23 +119,16 @@ db.product.insert({name:"cricketset",price:9000})
 db.product.insert({name:"studymaterial",price:19000})
 
 3)
->db.order.insert({orderno:3736,custName:"arunkumar",product:{productName:"toycar",price:2000
-0},order_date:"12/2/2019",stetus:"processed",Totalbill:2039,invoice:{invoiceNO:67564,bill:2039,dat
-e:"17/2/2019"}})
->db.order.insert({orderno:3737,custName:"arunkumar",product:{productName:"robot",price:12000},order_date:"11/3/2019",stetus:"processed",Totalbill:12800,invoice:{invoiceNO:67574,bill:12039,da
-te:"17/3/2019"}})
->db.order.insert({orderno:3738,custName:"arunkumar",product:{productName:"cricketset",price:90
-00},order
-_date:"15/5/2019",stetus:"in process",Totalbill:9050})
->db.order.insert({orderno:3739,custName:"mukeshpatil",product:{productName:"studentmaterial",
-price:19000},order_date:"15/8/2019",stetus:"in process",Totalbill:19080})
+>db.order.insert({orderno:3736,custName:"arunkumar",product:{productName:"toycar",price:20000},order_date:"12/2/2019",stetus:"processed",Totalbill:2039,invoice:{invoiceNO:67564,bill:2039,date:"17/2/2019"}})
+>db.order.insert({orderno:3737,custName:"arunkumar",product:{productName:"robot",price:12000},order_date:"11/3/2019",stetus:"processed",Totalbill:12800,invoice:{invoiceNO:67574,bill:12039,date:"17/3/2019"}})
+>db.order.insert({orderno:3738,custName:"arunkumar",product:{productName:"cricketset",price:9000},order_date:"15/5/2019",stetus:"in process",Totalbill:9050})
+>db.order.insert({orderno:3739,custName:"mukeshpatil",product:{productName:"studentmaterial",price:19000},order_date:"15/8/2019",stetus:"in process",Totalbill:19080})
 
 4)
-> db.product.find().pretty()
-> db.order.find({Totalbill:{$lt:10000}})
-> db.order.find({stetus:"in process"})
+>db.product.find().pretty()
+>db.order.find({Totalbill:{$lt:10000}})
+>db.order.find({stetus:"in process"})
 >db.order.find({custName:"arunkumar",stetus:"processed"}
-
 
 ___________________________________________#####______________________________________________________
 
@@ -207,7 +193,6 @@ p.display();
 c.display();
 }}
 
-
 ___________________________________________#####______________________________________________________
 
 
@@ -221,26 +206,21 @@ c. List all the book which are written by “RaghuRamkrishnan” and published i
 List all the books published by “O Reilly” and are written either in English or Marathi
 
 2)
-db.book.insert({BName:"shyamchiaai",cost:700,author:"sane guruji",published:2007})
-db.book.insert({BName:"Two
-Saints",cost:1700,author:"raguramkrishna",published:2017})
-db.book.insert({BName:"ramkrushna
-paramhans",cost:800,author:"raguramkrishna",published: 2017})
+>db.book.insert({BName:"shyamchiaai",cost:700,author:"sane guruji",published:2007})
+>db.book.insert({BName:"TwoSaints",cost:1700,author:"raguramkrishna",published:2017})
+>db.book.insert({BName:"ramkrushnaparamhans",cost:800,author:"raguramkrishna",published: 2017})
 >db.book.insert({BName:"DMS",cost:300,author:"raguramkrishna",published:2005})
 
 3)
-db.publisher.insert({pname:"OReilly",language:"English",books:[{BName:"ramkrushna
-paramhans"},{BName:"Two Saints"}],city:"mumbai"})
->db.publisher.insert({pname:"vision",language:"English",books:[{BName:"DMS"}],city:"pu
-ne"})
-db.publisher.insert({pname:"OReilly",language:"marathi",books:[{BName:"shyamchi
-aai"}],city:"mumbai"})
+>db.publisher.insert({pname:"OReilly",language:"English",books:[{BName:"ramkrushnaparamhans"},{BName:"Two Saints"}],city:"mumbai"})
+>db.publisher.insert({pname:"vision",language:"English",books:[{BName:"DMS"}],city:"pune"})
+>db.publisher.insert({pname:"OReilly",language:"marathi",books:[{BName:"shyamchiaai"}],city:"mumbai"})
 
 4)
 > db.publisher.find({city:"mumbai"})
 > db.book.find({cost:{$lt:1000}})
 > db.book.find({author:"raguramkrishna",published:2017})
-> > db.publisher.find({pname:"OReilly",$or:[{language:"English"},{language:"marathi"}]})
+> db.publisher.find({pname:"OReilly",$or:[{language:"English"},{language:"marathi"}]})
 
 ___________________________________________#####______________________________________________________
 
@@ -263,7 +243,7 @@ return 0;
 return 1;
 }
 
-OUTPUT
+OUTPUT:
 Enter the order of the matrix : 3
 Input the matrix elements :
 1 0 0
@@ -333,29 +313,16 @@ liked by the user posting the comment [5]
 
 
 2) & 3)
->db.post.insert({title:"online",url:"www.abc.com",tag:["food","travel"],pname:"mukesh",p
-date:new Date("2019-03-12"),like:89,user:[{name:"abhi",comment:"good",message:"do
-best", cdate:new Date("2020-03-12"),like:1}]})
->db.post.insert({title:"wetpet",url:"www.wetpet.com",tag:["food","travel",],pname:"Amit",
-pdate:ne w Date("2018-03-12"),like:82,user:[{name:"abhi",comment:"good",message:"do
-best",time:"4pm",like:1},{name:"mukesh",comment:"best",message:"success", cdate:new
-Date("2008-11-12"),like:2}]})
->db.post.insert({title:"wetpet",url:"www.wetpet.com",tag:["food","travel","magic"],pname
-:"abhijee
-t",pdate:newDate("2017-03-12"),like:182,user:[{name:"sagar",comment:"like",message:"
-dobest",time:"4pm",like:1},{name:"mukesh",comment:"best",message:"success",
-cdate:new Date("2019-03-12"),like:2}]})
->db.post.insert({title:"nonveg",url:"www.non.com",tag:["food","travel","chiken"],pname:"
-Amit",pda te:new Date("2019-07-12"),like:82,user:[{name:"manisha",comment:"good",message:"dobest",time:"4pm",like:0
-},{name:" manasi",comment:"best",message:"success", cdate:new
-Date("2018-03-12"),like:0}]})
+>db.post.insert({title:"online",url:"www.abc.com",tag:["food","travel"],pname:"mukesh",pdate:new Date("2019-03-12"),like:89,user:[{name:"abhi",comment:"good",message:"dobest", cdate:new Date("2020-03-12"),like:1}]})
+>db.post.insert({title:"wetpet",url:"www.wetpet.com",tag:["food","travel",],pname:"Amit",pdate:ne w Date("2018-03-12"),like:82,user:[{name:"abhi",comment:"good",message:"dobest",time:"4pm",like:1},{name:"mukesh",comment:"best",message:"success", cdate:newDate("2008-11-12"),like:2}]})
+>db.post.insert({title:"wetpet",url:"www.wetpet.com",tag:["food","travel","magic"],pname:"abhijeet",pdate:newDate("2017-03-12"),like:182,user:[{name:"sagar",comment:"like",message:"dobest",time:"4pm",like:1},{name:"mukesh",comment:"best",message:"success",cdate:new Date("2019-03-12"),like:2}]})
+>db.post.insert({title:"nonveg",url:"www.non.com",tag:["food","travel","chiken"],pname:"Amit",pda te:new Date("2019-07-12"),like:82,user:[{name:"manisha",comment:"good",message:"dobest",time:"4pm",like:0},{name:" manasi",comment:"best",message:"success", cdate:newDate("2018-03-12"),like:0}]})
 
 4)
->db.post.find({tag:"food"})
->db.post.find({pname:"Amit"})
-> db.post.find({tag:"travel",pdate:{"$lte":new Date("2018-03-
-11")},"user.name":"sagar","user.comment":"like"})
-d) > db.post.find({$or:[{"user.cdate":{$lte:new Date("2019-08-07")}},{"user.like":0}]})
+a)>db.post.find({tag:"food"})
+b)>db.post.find({pname:"Amit"})
+c)>db.post.find({tag:"travel",pdate:{"$lte":new Date("2018-03-11")},"user.name":"sagar","user.comment":"like"})
+d)>db.post.find({$or:[{"user.cdate":{$lte:new Date("2019-08-07")}},{"user.like":0}]})
 
 ___________________________________________#####______________________________________________________
 
@@ -401,38 +368,20 @@ d. List the names of the customers who went on a tour to Shillong. [5]
 
 
 2)
-db.turisum.insert({name:"veenaword",rate:9,package:[{pname:"shillong",cost:10000},{p
-nam e:"gujart",cost:7000},{pname:"karnataka",cost:6000}]})
->db.turisum.insert({name:"rohit",rate:7,package:[{pname:"shillong",cost:10000},{pname
-:"rujan",cos t:7000}]})
+>db.turisum.insert({name:"veenaword",rate:9,package:[{pname:"shillong",cost:10000},{pname:"gujart",cost:7000},{pname:"karnataka",cost:6000}]})
+>db.turisum.insert({name:"rohit",rate:7,package:[{pname:"shillong",cost:10000},{pname:"rujan",cost:7000}]})
 
 3)
->db.tour.insert({sourc:"john",destination:"shillong",toerisumName:"veenaword",tourisu
-mrate:8000,
-expense:20000,year:2018,customer:[{cname:"mukesh",city:"pune"},{cname:"abhijeet
-sangita",city:"baramati"},{cname:"manisha",city:"15no"},{cname:"manasi",city:"latur"}]})
->db.tour.insert({sourc:"john",destination:"karnataka",toerisumName:"veena
-word",tourisumrate:80090,expense:20900,year:2017,customer:[{cname:"mukesh",city:"
-pune"},{cna
-me:"abhijeetsangita",city:"baramati"},{cname:"manisha",city:"15no"},{cname:"manasi",ci
-ty:"latur"}]
-})>db.tour.insert({sourc:"john",destination:"rajasthan",toerisumName:"rohit",tourisumrat
-e:6000,expe
-nse:30400,year:2019,customer:[{cname:"mukesh",city:"pune"},{cname:"abhijeet
-sangita",city:"baramati"},{cname:"manisha",city:"15no"},{cname:"manasi",city:"latur"}]})
->db.tour.insert({sourc:"john",destination:"taj",toerisumName:"rohit",tourisumrate:6009
-0,expense:1
-0400,year:2016,customer:[{cname:"mukesh",city:"pune"},{cname:"abhijeetsangita",city:"
-baramati"}
-,{cname:"manisha",city:"15no"},{cname:"manasi",city:"latur"}]})
+>db.tour.insert({sourc:"john",destination:"shillong",toerisumName:"veenaword",tourisumrate:8000,expense:20000,year:2018,customer:[{cname:"mukesh",city:"pune"},{cname:"abhijeetsangita",city:"baramati"},{cname:"manisha",city:"15no"},{cname:"manasi",city:"latur"}]})
+>db.tour.insert({sourc:"john",destination:"karnataka",toerisumName:"veenaword",tourisumrate:80090,expense:20900,year:2017,customer:[{cname:"mukesh",city:"pune"},{cname:"abhijeetsangita",city:"baramati"},{cname:"manisha",city:"15no"},{cname:"manasi",city:"latur"}]})
+>db.tour.insert({sourc:"john",destination:"rajasthan",toerisumName:"rohit",tourisumrate:6000,expense:30400,year:2019,customer:[{cname:"mukesh",city:"pune"},{cname:"abhijeetsangita",city:"baramati"},{cname:"manisha",city:"15no"},{cname:"manasi",city:"latur"}]})
+>db.tour.insert({sourc:"john",destination:"taj",toerisumName:"rohit",tourisumrate:60090,expense:10400,year:2016,customer:[{cname:"mukesh",city:"pune"},{cname:"abhijeetsangita",city:"baramati"},{cname:"manisha",city:"15no"},{cname:"manasi",city:"latur"}]})
 
 4)
 >db.turisum.find({name:"veena word"}).pretty()
 >db.turisum.find({}).sort({"rate":-1}).limit(1)
->db.tour.aggregate([{"$sort":{"year":1}},{"$limit":3},{$group:{_id:null,"count":{"$sum":"$e
-xpense"
-}}}])
-> db.tour.find({destination:"shillong"})
+>db.tour.aggregate([{"$sort":{"year":1}},{"$limit":3},{$group:{_id:null,"count":{"$sum":"$expense"}}}])
+>db.tour.find({destination:"shillong"})
 
 ___________________________________________#####______________________________________________________
 
@@ -521,21 +470,14 @@ made contributed in 4 fields
 
 
 2) & 3)
-db.scien.insert({fname:"mukesh",lname:"navse",BOD:newDate("1952-04-18"),DOD:"still
-alive",field:["tcs","java","c","sql"],award:[{name:"turingmachine",year:1976},{name:"robot
-ic",year:1 998},{name:"codetalent",year:1995}]})
-db.scien.insert({fname:"abhi",lname:"nalave",BOD:newDate("1972-04-18"),DOD:"still
-alive",field:["tcs","java","sql"],award:[{name:"codemaster",year:1976},{name:"robot",year
-:1998},{na me:"puzzletalent",year:1995}]})
->db.scien.insert({fname:"manisha",lname:"hipparkar",BOD:new
-Date("1942-04-18"),DOD:new
-Date("2009-08-06"),field:["tcs","java"],award:[{name:"topper",year:1976},{n
-ame:"puraskar",year:1998},{name:"puzzletalent",year:1995}]})
+>db.scien.insert({fname:"mukesh",lname:"navse",BOD:newDate("1952-04-18"),DOD:"stillalive",field:["tcs","java","c","sql"],award:[{name:"turingmachine",year:1976},{name:"robotic",year:1 998},{name:"codetalent",year:1995}]})
+>db.scien.insert({fname:"abhi",lname:"nalave",BOD:newDate("1972-04-18"),DOD:"stillalive",field:["tcs","java","sql"],award:[{name:"codemaster",year:1976},{name:"robot",year:1998},{na me:"puzzletalent",year:1995}]})
+>db.scien.insert({fname:"manisha",lname:"hipparkar",BOD:newDate("1942-04-18"),DOD:newDate("2009-08-06"),field:["tcs","java"],award:[{name:"topper",year:1976},{name:"puraskar",year:1998},{name:"puzzletalent",year:1995}]})
 
 4)
-> db.scien.find({ lname: { $regex: /n/ } })> db.scien.find({BOD:{"$gt":new Date("1950-03-11")},DOD:"still alive"})
+>db.scien.find({ lname: { $regex: /n/ } })> db.scien.find({BOD:{"$gt":new Date("1950-03-11")},DOD:"still alive"})
 >db.scien.aggregate([{$group:{_id:{year:"$award.year",Name:"$award.name"}}}])
-> db.scien.find({"award.name":"turingmachine","award.year":{$lt:1980},field:{$size:4}})
+>db.scien.find({"award.name":"turingmachine","award.year":{$lt:1980},field:{$size:4}})
 
 ___________________________________________#####______________________________________________________
 
@@ -656,8 +598,7 @@ d. Find the total payment for each payment type [5]
 > db.transaction.find({customerName:"john"})
 > db.transaction.find({paymentmode:"debitcard"})
 >db.transaction.aggregate([{$match:{"paymentmode":"creditcard"}},{$group:{_id:null,"count":{"$s um":"$payment"}}}])
->db.transaction.aggregate([{$group:{_id:"$paymentmode","count":{"$sum":"$payment"}}}
-])
+>db.transaction.aggregate([{$group:{_id:"$paymentmode","count":{"$sum":"$payment"}}}])
 
 ___________________________________________#####______________________________________________________
 
